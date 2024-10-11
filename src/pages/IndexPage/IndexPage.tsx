@@ -1,4 +1,4 @@
-import { Section, List, Placeholder, Button } from "@telegram-apps/telegram-ui";
+import { List, Placeholder, Button } from "@telegram-apps/telegram-ui";
 import type { FC } from "react";
 // import tonSvg from "./ton.svg";
 
