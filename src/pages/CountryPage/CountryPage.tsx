@@ -1,13 +1,22 @@
 import { Link } from "@/components/Link/Link";
-import { Placeholder, Image, FixedLayout } from "@telegram-apps/telegram-ui";
+import {
+    Placeholder,
+    Image,
+    FixedLayout,
+    Button,
+} from "@telegram-apps/telegram-ui";
 import type { FC } from "react";
 // import tonSvg from "./ton.svg";
 
-export const IndexPage: FC = () => {
+export const CountryPage: FC = () => {
     return (
         <FixedLayout vertical="top">
             <Placeholder
-                action={<Link to={"/country"}>Выбрать</Link>}
+                action={
+                    <Button size="l" stretched>
+                        Здесь будет селектор
+                    </Button>
+                }
                 description="Сначала выберем страну"
                 header="Что нужно, чтобы запланировать путешествие?"
             >
