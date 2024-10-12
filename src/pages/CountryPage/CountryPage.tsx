@@ -1,9 +1,4 @@
-import {
-    Placeholder,
-    Image,
-    FixedLayout,
-    Button,
-} from "@telegram-apps/telegram-ui";
+import { Placeholder, FixedLayout, Button } from "@telegram-apps/telegram-ui";
 import type { FC } from "react";
 // import tonSvg from "./ton.svg";
 
@@ -19,12 +14,15 @@ export const CountryPage: FC = () => {
                 description="Сначала выберем страну"
                 header="Что нужно, чтобы запланировать путешествие?"
             >
-                <Image
-                    src="assets/travelagent.png"
-                    alt="panda"
-                    size={300 as 40}
-                    style={{ background: "transparent", boxShadow: "none" }}
-                ></Image>
+                <img
+                    src="@/../assets/travelagent.png"
+                    alt="travelagent"
+                    style={{
+                        background: "transparent",
+                        boxShadow: "none",
+                        width: 200,
+                    }}
+                />
             </Placeholder>
         </FixedLayout>
     );
