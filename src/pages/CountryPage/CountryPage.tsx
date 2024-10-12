@@ -1,4 +1,3 @@
-import { Link } from "@/components/Link/Link";
 import {
     Placeholder,
     Image,
