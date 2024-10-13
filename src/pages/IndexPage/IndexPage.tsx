@@ -11,7 +11,7 @@ export const IndexPage: FC = () => {
 
     return (
         <Layout>
-            <Flexbox direction="column" gap={16}>
+            <Flexbox direction="column" gap={16} verticalMargin={20}>
                 <LargeTitle weight="1">
                     Итак, вы собрались в путешествие!
                 </LargeTitle>
