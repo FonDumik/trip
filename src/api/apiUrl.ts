@@ -7,4 +7,7 @@ export const API_URL = {
     oxilor: {
         Region: "https://data-api.oxilor.com/rest/search-regions",
     },
+    aviasales: {
+        Region: "https://autocomplete.travelpayouts.com/places2",
+    },
 };

@@ -26,8 +26,12 @@ const getQuery = (queryParams: {
 export const FormApi = {
     getRegionsAsync: async (searchTerm: string): Promise<IRegionResponse[]> => {
         try {
-            const url = API_URL.oxilor.Region;
-            const query = getQuery({ searchTerm, first: 5 });
+            const url = API_URL.aviasales.Region;
+            const query = getQuery({
+                locale: "ru",
+                term: searchTerm,
+                "types[]": "city",
+            });
             const path = query ? `${url}?` + query : url;
 
             const response = await fetch(path, {

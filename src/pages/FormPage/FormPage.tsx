@@ -30,9 +30,7 @@ export const FormPage: FC = () => {
                         className={styles.imagePlaceholder}
                     />
                 </Placeholder>
-                <Flexbox width={"100%"}>
-                    <Region />
-                </Flexbox>
+                <Region />
             </Flexbox>
         </Layout>
     );
