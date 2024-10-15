@@ -5,10 +5,10 @@ import { prepareForSelect } from "./helper";
 import { MultiselectOption } from "@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types";
 import { useDispatch } from "@/store/hooks";
 import { selectRegion } from "@/store/FormReducer/FormReducer.slice";
-import Combobox from "react-widgets/Combobox";
 import styles from "./styles.module.scss";
 import { Button, Text } from "@telegram-apps/telegram-ui";
 import { Flexbox } from "@/components/Flexbox/Flexbox";
+import { Autocomplete, TextField } from "@mui/material";
 
 export const Region = () => {
     const dispatch = useDispatch();
@@ -33,6 +33,7 @@ export const Region = () => {
     const resetRegionHandler = () => {
         setSelectedRegion(undefined);
         setQuery("");
+        setRegions([]);
         dispatch(
             selectRegion({
                 value: "",
@@ -40,11 +41,11 @@ export const Region = () => {
         );
     };
 
-    const selectRegionHandler = (option: { value: string }) => {
-        setSelectedRegion(option.value);
+    const selectRegionHandler = (option: string) => {
+        setSelectedRegion(option);
         dispatch(
             selectRegion({
-                value: option.value,
+                value: option,
             })
         );
         setQuery("");
@@ -52,27 +53,39 @@ export const Region = () => {
     };
 
     return selectedRegion ? (
-        <Flexbox justify="center" gap={16} align="center" wrap="wrap">
+        <Flexbox
+            justify="center"
+            gap={16}
+            align="center"
+            wrap="wrap"
+            style={{ padding: "0 20px" }}
+        >
             <Text>Вы выбрали направление: {selectedRegion}</Text>
-            <Button onClick={resetRegionHandler} size="s" stretched height={20}>
-                Выбрать другое
+            <Button onClick={resetRegionHandler} size="s" stretched>
+                Изменить
             </Button>
         </Flexbox>
     ) : (
-        <Combobox
-            data={regions}
-            value={selectedRegion}
-            dataKey="label"
-            textField="value"
-            onSelect={(value) => selectRegionHandler(value)}
-            onChange={debouncedSetQuery}
-            placeholder="Город или регион"
-            busy={loading}
-            focusFirstItem
-            className={styles.combobox}
-            renderListItem={(item) => (
-                <Text size={12}>{item.value as string}</Text>
+        <Autocomplete
+            disablePortal
+            options={regions}
+            sx={{ width: 300 }}
+            renderInput={(params) => (
+                <TextField {...params} label="Город или регион" />
             )}
+            blurOnSelect
+            className={styles.autocomplete}
+            loading={loading}
+            loadingText="Ищем..."
+            noOptionsText="Начните вводить"
+            onInputChange={(e) =>
+                debouncedSetQuery((e?.currentTarget as HTMLInputElement)?.value)
+            }
+            onChange={(e) =>
+                selectRegionHandler((e?.target as HTMLInputElement)?.innerText)
+            }
+            datatype="label"
+            itemType="value"
         />
     );
 };
