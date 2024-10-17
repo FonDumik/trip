@@ -1,11 +1,11 @@
 import { useDispatch, useSelector } from "@/store/hooks";
 import { updateBudget } from "@/store/FormReducer/FormReducer.slice";
 import { useState } from "react";
-import { TextField } from "@mui/material";
 import { useDebouncedCallback } from "use-debounce";
 import styles from "./styles.module.scss";
 import { Flexbox } from "@/components/Flexbox/Flexbox";
 import { FormState } from "@/store/selectors";
+import { Slider, Text } from "@telegram-apps/telegram-ui";
 
 export const Budget = () => {
     const dispatch = useDispatch();
@@ -23,13 +23,15 @@ export const Budget = () => {
 
     return (
         <Flexbox width={"80%"}>
-            <TextField
-                type="number"
-                size="medium"
-                label="Бюджет поездки"
+            <Text>Бюджет поездки: {budget} тыс. рублей</Text>
+            <Slider
                 value={budget || undefined}
-                onChange={(e) => handleChangeBudget(e.target.value as any)}
+                onChange={(value) => {
+                    handleChangeBudget(value);
+                }}
                 className={styles.budget}
+                max={999}
+                min={10}
             />
         </Flexbox>
     );

@@ -4,7 +4,7 @@ import styles from "./styles.module.scss";
 
 export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
     return (
-        <FixedLayout vertical="top" className={styles.layout} scrolling="true">
+        <FixedLayout vertical="top" className={styles.layout}>
             {children}
         </FixedLayout>
     );

@@ -71,7 +71,12 @@ export const Region = () => {
             options={regions}
             sx={{ width: 300 }}
             renderInput={(params) => (
-                <TextField {...params} label="Город или регион" />
+                <TextField
+                    {...params}
+                    variant="standard"
+                    label="Город или регион"
+                    //   placeholder="Favorites"
+                />
             )}
             blurOnSelect
             className={styles.autocomplete}

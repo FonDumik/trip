@@ -1,6 +1,5 @@
 import { FC } from "react";
 import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { Layout } from "@/components/Layout/Layout";
 import { Placeholder } from "@telegram-apps/telegram-ui";
 import styles from "./styles.module.scss";
 import { useSelector } from "@/store/hooks";
@@ -13,28 +12,28 @@ export const FormPage: FC = () => {
     const { region, startDate, endDate } = useSelector(FormState);
 
     return (
-        <Layout>
-            <Flexbox
-                direction="column"
-                gap={16}
-                verticalMargin={30}
-                justify="center"
-                align="center"
+        <Flexbox
+            direction="column"
+            gap={16}
+            justify="center"
+            align="center"
+            style={{
+                backgroundColor: "var(--tg-theme-secondary-bg-color)",
+            }}
+        >
+            <Placeholder
+                description="Расскажите о вашей поездке"
+                header="Нужно кое-что уточнить"
             >
-                <Placeholder
-                    description="Расскажите о вашей поездке"
-                    header="Нужно кое-что уточнить"
-                >
-                    <img
-                        src="https://media.tenor.com/CRd3NHA4idMAAAAi/ultimate-uyta-ultimate-duck.gif"
-                        alt="travelagent"
-                        className={styles.imagePlaceholder}
-                    />
-                </Placeholder>
-                <Region />
-                {region.value && <DatesRange />}
-                {region.value && startDate && endDate && <Budget />}
-            </Flexbox>
-        </Layout>
+                <img
+                    src="https://media.tenor.com/CRd3NHA4idMAAAAi/ultimate-uyta-ultimate-duck.gif"
+                    alt="travelagent"
+                    className={styles.imagePlaceholder}
+                />
+            </Placeholder>
+            <Region />
+            {region.value && <DatesRange />}
+            {region.value && startDate && endDate && <Budget />}
+        </Flexbox>
     );
 };
