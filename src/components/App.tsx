@@ -13,6 +13,12 @@ import { AppRoot } from "@telegram-apps/telegram-ui";
 import { type FC, useEffect, useMemo } from "react";
 import { Navigate, Route, Router, Routes } from "react-router-dom";
 import { Provider } from "react-redux";
+import { LocalizationProvider } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import {
+    defaultTheme,
+    Provider as SpectrumProvider,
+} from "@adobe/react-spectrum";
 
 import { routes } from "@/navigation/routes.tsx";
 import { store } from "@/store/store";
@@ -49,21 +55,27 @@ export const App: FC = () => {
 
     return (
         <Provider store={store}>
-            <AppRoot
-                appearance={miniApp.isDark ? "dark" : "light"}
-                platform={
-                    ["macos", "ios"].includes(lp.platform) ? "ios" : "base"
-                }
-            >
-                <Router location={location} navigator={reactNavigator}>
-                    <Routes>
-                        {routes.map((route) => (
-                            <Route key={route.path} {...route} />
-                        ))}
-                        <Route path="*" element={<Navigate to="/" />} />
-                    </Routes>
-                </Router>
-            </AppRoot>
+            <SpectrumProvider theme={defaultTheme}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                    <AppRoot
+                        appearance={miniApp.isDark ? "dark" : "light"}
+                        platform={
+                            ["macos", "ios"].includes(lp.platform)
+                                ? "ios"
+                                : "base"
+                        }
+                    >
+                        <Router location={location} navigator={reactNavigator}>
+                            <Routes>
+                                {routes.map((route) => (
+                                    <Route key={route.path} {...route} />
+                                ))}
+                                <Route path="*" element={<Navigate to="/" />} />
+                            </Routes>
+                        </Router>
+                    </AppRoot>
+                </LocalizationProvider>
+            </SpectrumProvider>
         </Provider>
     );
 };

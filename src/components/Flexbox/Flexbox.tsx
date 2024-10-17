@@ -12,6 +12,7 @@ interface IProps extends HTMLProps<HTMLDivElement> {
     style?: any;
     className?: string;
     onClick?: (...args: never) => void;
+    scroll?: boolean;
 }
 
 export const Flexbox = ({
