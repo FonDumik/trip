@@ -13,9 +13,6 @@ interface IFormState {
     // other
     typeOfTravel: "withChildren" | "romantic" | "alone" | null;
     wishes: string;
-
-    // budget
-    budget: number;
 }
 
 const initialState: IFormState = {
@@ -26,7 +23,6 @@ const initialState: IFormState = {
     endDate: null,
     typeOfTravel: null,
     wishes: "",
-    budget: 0,
 };
 
 export const FormReducerSlice = createSlice({
@@ -40,13 +36,9 @@ export const FormReducerSlice = createSlice({
             state.startDate = payload.start;
             state.endDate = payload.end;
         },
-        updateBudget: (state, { payload }) => {
-            state.budget = payload;
-        },
     },
 });
 
-export const { selectRegion, selectDates, updateBudget } =
-    FormReducerSlice.actions;
+export const { selectRegion, selectDates } = FormReducerSlice.actions;
 
 export default FormReducerSlice.reducer;

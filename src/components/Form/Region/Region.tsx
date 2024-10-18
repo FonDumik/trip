@@ -61,7 +61,7 @@ export const Region = () => {
             style={{ padding: "0 20px" }}
         >
             <Text>Вы выбрали направление: {selectedRegion}</Text>
-            <Button onClick={resetRegionHandler} size="s" stretched>
+            <Button onClick={resetRegionHandler} size="s" mode="bezeled">
                 Изменить
             </Button>
         </Flexbox>

@@ -11,21 +11,25 @@ export const IndexPage: FC = () => {
 
     return (
         <Layout>
-            <Flexbox direction="column" gap={16} verticalMargin={20}>
-                <LargeTitle weight="1">
-                    Итак, вы собрались в путешествие!
+            <Flexbox direction="column" gap={16} verticalMargin={30}>
+                <LargeTitle
+                    style={{
+                        textAlign: "center",
+                    }}
+                >
+                    Значит, вы собрались в путешествие?
                 </LargeTitle>
                 <Placeholder
                     action={
                         <Button onClick={navigateToFormPage} size="l" stretched>
-                            Начать
+                            Начать планирование
                         </Button>
                     }
-                    description="Сначала узнаем несколько моментов"
-                    header="Что нужно, чтобы всё продумать?"
+                    header="Что нужно, чтобы распланировать путешествие мечты?"
+                    description="Сначала мне нужно узнать несколько моментов"
                 >
                     <img
-                        src="https://utyatheduck.com/assets/img/utya1.gif"
+                        src="assets/goose.png"
                         alt="travelagent"
                         className={styles.imagePlaceholder}
                         loading="lazy"

@@ -1,16 +1,20 @@
 import { FC } from "react";
 import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { Placeholder } from "@telegram-apps/telegram-ui";
-import styles from "./styles.module.scss";
+import { Button, Placeholder } from "@telegram-apps/telegram-ui";
+// import styles from "./styles.module.scss";
 import { useSelector } from "@/store/hooks";
 import { Region } from "@/components/Form/Region/Region";
 import { FormState } from "@/store/selectors";
 import { DatesRange } from "@/components/Form/DatesRange/DatesRange";
-import { Budget } from "@/components/Form/Budget/Budget";
-import { MainButton } from "@vkruglikov/react-telegram-web-app";
+import { OtherInfo } from "@/components/Form/OtherInfo/OtherInfo";
 
 export const FormPage: FC = () => {
-    const { region, startDate, endDate, budget } = useSelector(FormState);
+    const { region, startDate, endDate } = useSelector(FormState);
+    const isPlanningButtonDisabled = !region.value || !startDate || !endDate;
+
+    const planningButtonHandler = () => {
+        console.log("Планируем...");
+    };
 
     return (
         <Flexbox
@@ -20,28 +24,25 @@ export const FormPage: FC = () => {
             align="center"
             style={{
                 backgroundColor: "var(--tg-theme-secondary-bg-color)",
+                padding: "0 10px",
             }}
         >
             <Placeholder
-                description="Расскажите о вашей поездке"
-                header="Нужно кое-что уточнить"
-            >
-                <img
-                    src="https://media.tenor.com/CRd3NHA4idMAAAAi/ultimate-uyta-ultimate-duck.gif"
-                    alt="travelagent"
-                    className={styles.imagePlaceholder}
-                />
-            </Placeholder>
+                header="Расскажите о вашей поездке"
+                description="Нужно только указать направление и выбрать даты"
+            ></Placeholder>
 
             <Region />
             {region.value && <DatesRange />}
-            {region.value && startDate && endDate && <Budget />}
+            {region.value && !!startDate && !!endDate && <OtherInfo />}
 
-            <MainButton
-                disabled={region.value && startDate && endDate && budget > 0}
-                text="Расчитать"
-                onClick={() => console.log("Hello, I am button!")}
-            />
+            <Button
+                disabled={isPlanningButtonDisabled}
+                stretched
+                onClick={planningButtonHandler}
+            >
+                Расчитать
+            </Button>
         </Flexbox>
     );
 };
