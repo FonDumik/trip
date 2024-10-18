@@ -29,7 +29,7 @@ export const IndexPage: FC = () => {
                     description="Сначала мне нужно узнать несколько моментов"
                 >
                     <img
-                        src="assets/goose.png"
+                        src="https://i.ibb.co/GQ976bX/Pngtree-happy-big-white-goose-free-4623089.png"
                         alt="travelagent"
                         className={styles.imagePlaceholder}
                         loading="lazy"
