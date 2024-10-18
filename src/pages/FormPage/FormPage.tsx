@@ -7,9 +7,10 @@ import { Region } from "@/components/Form/Region/Region";
 import { FormState } from "@/store/selectors";
 import { DatesRange } from "@/components/Form/DatesRange/DatesRange";
 import { Budget } from "@/components/Form/Budget/Budget";
+import { MainButton } from "@vkruglikov/react-telegram-web-app";
 
 export const FormPage: FC = () => {
-    const { region, startDate, endDate } = useSelector(FormState);
+    const { region, startDate, endDate, budget } = useSelector(FormState);
 
     return (
         <Flexbox
@@ -31,9 +32,16 @@ export const FormPage: FC = () => {
                     className={styles.imagePlaceholder}
                 />
             </Placeholder>
+
             <Region />
             {region.value && <DatesRange />}
             {region.value && startDate && endDate && <Budget />}
+
+            <MainButton
+                disabled={region.value && startDate && endDate && budget > 0}
+                text="Расчитать"
+                onClick={() => console.log("Hello, I am button!")}
+            />
         </Flexbox>
     );
 };
