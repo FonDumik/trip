@@ -6,7 +6,7 @@ interface IProps {
     title: string;
     loading?: boolean;
     disabled?: boolean;
-    size?: "s" | "m" | "l";
+    size?: "s" | "m" | "l" | "xl";
 }
 export const BottomButton: FC<IProps> = ({
     onClick,

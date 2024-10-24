@@ -23,13 +23,13 @@ export const FormPage: FC = () => {
 
     return (
         <Layout>
-            <Flexbox gap={10}>
+            <Flexbox gap={16} align="center">
                 <Region />
                 {region.value && <DatesRange />}
                 <BottomButton
                     onClick={planningButtonHandler}
                     title="Расчитать"
-                    size="l"
+                    size="xl"
                     disabled={isPlanningButtonDisabled}
                     loading={loading}
                 />

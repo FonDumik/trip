@@ -33,7 +33,7 @@ export const IndexPage: FC = () => {
             <BottomButton
                 onClick={navigateToFormPage}
                 title="Начать"
-                size="l"
+                size="xl"
             />
         </Layout>
     );
