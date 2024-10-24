@@ -47,7 +47,7 @@ export const FormApi = {
         }
     },
 
-    getWeatherAsync: async (searchTerm: string): Promise<IRegionResponse[]> => {
+    getWeatherAsync: async (): Promise<IRegionResponse[]> => {
         try {
             const url = API_URL.Weather;
             const query = getQuery({
