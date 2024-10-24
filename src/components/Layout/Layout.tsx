@@ -8,8 +8,6 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
             gap={16}
             width={"100%"}
             style={{
-                position: "relative",
-                height: "100vh",
                 textAlign: "center",
             }}
         >
@@ -17,7 +15,7 @@ export const Layout: FC<{ children: ReactNode }> = ({ children }) => {
                 align="center"
                 gap={16}
                 justify="space-between"
-                verticalMargin={50}
+                verticalMargin={20}
             >
                 {children}
             </Flexbox>
