@@ -8,6 +8,7 @@ import { Layout } from "@/components/Layout/Layout";
 import { Loader, Overlay } from "@gravity-ui/uikit";
 import { BottomButton } from "@/components/BottomButton/BottomButton";
 import { useGetData } from "@/hooks/useGetData";
+import { Flexbox } from "@/components/Flexbox/Flexbox";
 
 export const FormPage: FC = () => {
     // const navigate = useNavigate();
@@ -22,7 +23,7 @@ export const FormPage: FC = () => {
 
     return (
         <Layout>
-            <Flexbox>
+            <Flexbox gap={10}>
                 <Region />
                 {region.value && <DatesRange />}
                 <BottomButton
