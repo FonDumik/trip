@@ -8,7 +8,7 @@ import { BottomButton } from "@/components/BottomButton/BottomButton";
 
 export const IndexPage: FC = () => {
     const navigate = useNavigate();
-    const navigateToFormPage = () => navigate("/form");
+    const navigateToFormPage = () => navigate("/trip/form");
 
     return (
         <Layout>
