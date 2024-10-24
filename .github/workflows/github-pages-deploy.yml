@@ -43,6 +43,7 @@ jobs:
             - name: Build
               env:
                   VITE_OXILOR_API_TOKEN: ${{ secrets.VITE_OXILOR_API_TOKEN }}
+                  VITE_OPEN_WEATHER_API_TOKEN: ${{ secrets.VITE_OPEN_WEATHER_API_TOKEN }}
               run: npm run build
 
             - name: Setup Pages

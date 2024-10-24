@@ -4,15 +4,17 @@ import { API_URL } from "../apiUrl";
 
 const ENV = import.meta.env;
 
-const defaultOptions: RequestInit = {
-    method: "GET",
-    mode: "cors",
-    headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Accept-Language": "ru",
-        Authorization: "Bearer " + ENV.VITE_OXILOR_API_TOKEN,
-    },
+const getDefaultOptions = (auth): RequestInit => {
+    return {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            "Accept-Language": "ru",
+            Authorization: auth,
+        },
+    };
 };
 
 const getQuery = (queryParams: {
@@ -33,9 +35,32 @@ export const FormApi = {
                 "types[]": "city",
             });
             const path = query ? `${url}?` + query : url;
-
+            const options = getDefaultOptions(
+                `Bearer ${ENV.VITE_OXILOR_API_TOKEN}`
+            );
             const response = await fetch(path, {
-                ...defaultOptions,
+                ...options,
+            });
+            return response.json();
+        } catch (error) {
+            throw new Error("Error");
+        }
+    },
+
+    getWeatherAsync: async (searchTerm: string): Promise<IRegionResponse[]> => {
+        try {
+            const url = API_URL.Weather;
+            const query = getQuery({
+                lat: 33.44,
+                lon: -94.04,
+                appid: ENV.VITE_OPEN_WEATHER_API_TOKEN,
+            });
+            const path = query ? `${url}?` + query : url;
+            const options = getDefaultOptions(
+                `Bearer ${ENV.VITE_OXILOR_API_TOKEN}`
+            );
+            const response = await fetch(path, {
+                ...options,
             });
             return response.json();
         } catch (error) {

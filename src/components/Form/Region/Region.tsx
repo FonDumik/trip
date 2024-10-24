@@ -54,7 +54,7 @@ export const Region = () => {
                 className={styles.autocomplete}
                 placeholder="Например, Париж"
                 filterable={true}
-                size="xl"
+                size="l"
                 width="max"
                 value={[selectedRegion]}
                 loading={loading}
@@ -63,7 +63,7 @@ export const Region = () => {
                     <TextInput
                         onChange={filter.inputProps.onChange}
                         placeholder="Поиск..."
-                        size="xl"
+                        size="l"
                         autoFocus
                     />
                 )}

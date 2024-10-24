@@ -38,6 +38,7 @@ export const DatesRange = () => {
                     start: dateTimeParse(startDate),
                     end: dateTimeParse(endDate),
                 }}
+                size="l"
             />
         </Flexbox>
     );

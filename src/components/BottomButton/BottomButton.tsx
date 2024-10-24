@@ -23,11 +23,8 @@ export const BottomButton: FC<IProps> = ({
             view="action"
             size={size}
             style={{
-                position: "absolute",
-                bottom: 40,
                 width: "90%",
                 height: "max-content",
-                verticalAlign: "middle",
             }}
         >
             {title}
