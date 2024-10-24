@@ -22,15 +22,17 @@ export const FormPage: FC = () => {
 
     return (
         <Layout>
-            <Region />
-            {region.value && <DatesRange />}
-
-            <BottomButton
-                onClick={planningButtonHandler}
-                title="Расчитать"
-                size="l"
-                disabled={isPlanningButtonDisabled}
-            />
+            <Flexbox>
+                <Region />
+                {region.value && <DatesRange />}
+                <BottomButton
+                    onClick={planningButtonHandler}
+                    title="Расчитать"
+                    size="l"
+                    disabled={isPlanningButtonDisabled}
+                    loading={loading}
+                />
+            </Flexbox>
 
             <Overlay visible={loading}>
                 <Loader />
