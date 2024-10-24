@@ -9,18 +9,18 @@ export const useGetData = () => {
     // const { add } = useToaster();
 
     const getTripInformation = async () => {
-        try {
-            setLoading(true);
+        setLoading(true);
+        // try {
 
-            // const response = await fetch(
+        //     // const response = await fetch(
 
-            throw new Error("Информации нет");
-        } catch (error) {
-            setLoading(false);
-            console.error(error);
-        } finally {
-            setLoading(false);
-        }
+        //     // throw new Error("Информации нет");
+        // } catch (error) {
+        //     setLoading(false);
+        //     console.error(error);
+        // } finally {
+        //     // setLoading(false);
+        // }
     };
 
     return { getTripInformation, loading };

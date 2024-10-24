@@ -24,7 +24,7 @@ export const FormPage: FC = () => {
         <Layout>
             <Region />
             {region.value && <DatesRange />}
-            {/* {region.value && !!startDate && !!endDate && <OtherInfo />} */}
+
             <BottomButton
                 onClick={planningButtonHandler}
                 title="Расчитать"

@@ -12,7 +12,7 @@ export const IndexPage: FC = () => {
 
     return (
         <Layout>
-            <Flexbox gap={16} verticalMargin={30} width={"80%"}>
+            <Flexbox gap={16} width={"80%"}>
                 <Text variant="header-2">Вы собрались в путешествие?</Text>
                 <Text
                     variant="body-2"
