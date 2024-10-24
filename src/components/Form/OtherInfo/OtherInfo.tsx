@@ -1,10 +1,17 @@
-import { useState } from "react";
-import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { Cell, Radio, Switch } from "@telegram-apps/telegram-ui";
+// import { useState } from "react";
+// import { Flexbox } from "@/components/Flexbox/Flexbox";
+// import { useDispatch } from "@/store/hooks";
+// import { selectTypeOfTravel } from "@/store/FormReducer/FormReducer.slice";
 
+// enum ETypeOfTravel {
+//     withChildren = "Семейное",
+//     romantic = "Романтическое",
+//     alone = "В одиночестве",
+// }
 export const OtherInfo = () => {
     // const dispatch = useDispatch();
-    const [switcherChecked, toggleSwitcherChecked] = useState<boolean>(false);
+    // const { typeOfTravel } = useSelector(FormState);
+    // const [switcherChecked, toggleSwitcherChecked] = useState<boolean>(false);
     // const [wishes, setWishes] = useState<string>("");
 
     // const handlePreviewSelect = (ranges) => {
@@ -16,53 +23,79 @@ export const OtherInfo = () => {
     //     dispatch(selectDates(result));
     // };
 
+    // const toggleOtherDataHandler = () => {
+    //     toggleSwitcherChecked((prev) => !prev);
+    //     if (!switcherChecked) {
+    //         dispatch(selectTypeOfTravel(null));
+    //     }
+    // };
+
+    // const clickRadioHandler = (type: ETypeOfTravel) => {
+    //     dispatch(selectTypeOfTravel(type));
+    // };
+
     return (
-        <Flexbox width="100%">
-            <Cell
-                after={
-                    <Switch
-                        checked={switcherChecked}
-                        onClick={() => toggleSwitcherChecked((prev) => !prev)}
-                    />
-                }
-                description="Можно рассказать чуть больше"
-            >
-                Дополнительно
-            </Cell>
-            {switcherChecked && (
-                <Flexbox direction="column">
-                    <Cell
-                        after={
-                            <form>
-                                <Cell
-                                    Component="label"
-                                    before={<Radio name="radio" value="1" />}
-                                >
-                                    Романтическое
-                                </Cell>
-                                <Cell
-                                    Component="label"
-                                    before={<Radio name="radio" value="2" />}
-                                >
-                                    Семейное
-                                </Cell>
-                                <Cell
-                                    Component="label"
-                                    before={<Radio name="radio" value="3" />}
-                                >
-                                    В одиночестве
-                                </Cell>
-                            </form>
-                        }
-                        description="Тип поездки"
-                    />
-                    {/* <Textarea
-                        value={wishes}
-                        onInput={(e) => setWishes(e.currentTarget.value)}
-                        placeholder="Ваши ожидания от поездки"
-                    ></Textarea> */}
-                </Flexbox>
-            )}
-        </Flexbox>
+        <> </>
+        // <Flexbox width="100%">
+        //     {/* <Cell
+        //         after={
+        //             <Switch
+        //                 checked={switcherChecked}
+        //                 onClick={toggleOtherDataHandler}
+        //             />
+        //         }
+        //         description={
+        //             switcherChecked && (
+        //                 <Flexbox direction="column">
+        //                     <Cell
+        //                         Component="label"
+        //                         before={
+        //                             <Radio
+        //                                 name="radio"
+        //                                 value="romantic"
+        //                                 // onClick={() =>
+        //                                 //     clickRadioHandler("romantic")
+        //                                 // }
+        //                             />
+        //                         }
+        //                     >
+        //                         {ETypeOfTravel.romantic}
+        //                     </Cell>
+        //                     <Cell
+        //                         Component="label"
+        //                         before={
+        //                             <Radio
+        //                                 name="radio"
+        //                                 value="withChildren"
+        //                                 // onClick={() =>
+        //                                 //     clickRadioHandler("withChildren")
+        //                                 // }
+        //                             />
+        //                         }
+        //                     >
+        //                         {ETypeOfTravel.withChildren}
+        //                     </Cell>
+        //                     <Cell
+        //                         Component="label"
+        //                         before={
+        //                             <Radio
+        //                                 name="radio"
+        //                                 value="alone"
+        //                                 // onClick={() =>
+        //                                 //     clickRadioHandler("alone")
+        //                                 // }
+        //                             />
+        //                         }
+        //                     >
+        //                         {ETypeOfTravel.alone}
+        //                     </Cell>
+        //                 </Flexbox>
+        //             )
+        //         }
+        //     >
+        //         Указать формат поездки
+        //     </Cell> */}
+        //     <></>
+        // </Flexbox>
     );
 };

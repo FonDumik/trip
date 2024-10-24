@@ -2,13 +2,11 @@ import { apiInstance } from "@/api/apiInstance";
 import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { prepareForSelect } from "./helper";
-import { MultiselectOption } from "@telegram-apps/telegram-ui/dist/components/Form/Multiselect/types";
 import { useDispatch } from "@/store/hooks";
 import { selectRegion } from "@/store/FormReducer/FormReducer.slice";
 import styles from "./styles.module.scss";
-import { Button, Text } from "@telegram-apps/telegram-ui";
+import { Select, Text, TextInput } from "@gravity-ui/uikit";
 import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { Autocomplete, TextField } from "@mui/material";
 
 export const Region = () => {
     const dispatch = useDispatch();
@@ -19,7 +17,7 @@ export const Region = () => {
         setQuery(query);
     }, 200);
 
-    const [regions, setRegions] = useState<MultiselectOption[]>([]);
+    const [regions, setRegions] = useState<any[]>([]);
     const [selectedRegion, setSelectedRegion] = useState<string>(undefined);
 
     useEffect(() => {
@@ -30,18 +28,8 @@ export const Region = () => {
         });
     }, [query]);
 
-    const resetRegionHandler = () => {
-        setSelectedRegion(undefined);
-        setQuery("");
-        setRegions([]);
-        dispatch(
-            selectRegion({
-                value: "",
-            })
-        );
-    };
-
     const selectRegionHandler = (option: string) => {
+        if (!option) return;
         setSelectedRegion(option);
         dispatch(
             selectRegion({
@@ -52,7 +40,7 @@ export const Region = () => {
         setRegions([]);
     };
 
-    return selectedRegion ? (
+    return (
         <Flexbox
             justify="center"
             gap={16}
@@ -60,37 +48,28 @@ export const Region = () => {
             wrap="wrap"
             style={{ padding: "0 20px" }}
         >
-            <Text>Вы выбрали направление: {selectedRegion}</Text>
-            <Button onClick={resetRegionHandler} size="s" mode="bezeled">
-                Изменить
-            </Button>
+            <Text variant="header-2">Куда вы планируете отправиться?</Text>
+            <Text variant="body-1">Начните вводить название города</Text>
+            <Select
+                className={styles.autocomplete}
+                placeholder="Например, Париж"
+                filterable={true}
+                size="xl"
+                width="max"
+                value={[selectedRegion]}
+                loading={loading}
+                onFilterChange={(value) => debouncedSetQuery(value)}
+                renderFilter={(filter) => (
+                    <TextInput
+                        onChange={filter.inputProps.onChange}
+                        placeholder="Поиск..."
+                        size="xl"
+                        autoFocus
+                    />
+                )}
+                options={regions}
+                onUpdate={(value) => selectRegionHandler(value[0])}
+            />
         </Flexbox>
-    ) : (
-        <Autocomplete
-            disablePortal
-            options={regions}
-            sx={{ width: 300 }}
-            renderInput={(params) => (
-                <TextField
-                    {...params}
-                    variant="standard"
-                    label="Город или регион"
-                    //   placeholder="Favorites"
-                />
-            )}
-            blurOnSelect
-            className={styles.autocomplete}
-            loading={loading}
-            loadingText="Ищем..."
-            noOptionsText="Начните вводить"
-            onInputChange={(e) =>
-                debouncedSetQuery((e?.currentTarget as HTMLInputElement)?.value)
-            }
-            onChange={(e) =>
-                selectRegionHandler((e?.target as HTMLInputElement)?.innerText)
-            }
-            datatype="label"
-            itemType="value"
-        />
     );
 };

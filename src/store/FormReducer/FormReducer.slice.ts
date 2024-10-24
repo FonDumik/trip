@@ -7,8 +7,8 @@ interface IFormState {
     };
 
     // dates
-    startDate: DateConstructor | null;
-    endDate: DateConstructor | null;
+    startDate: string | null;
+    endDate: string | null;
 
     // other
     typeOfTravel: "withChildren" | "romantic" | "alone" | null;
@@ -36,9 +36,13 @@ export const FormReducerSlice = createSlice({
             state.startDate = payload.start;
             state.endDate = payload.end;
         },
+        selectTypeOfTravel: (state, { payload }) => {
+            state.typeOfTravel = payload;
+        },
     },
 });
 
-export const { selectRegion, selectDates } = FormReducerSlice.actions;
+export const { selectRegion, selectDates, selectTypeOfTravel } =
+    FormReducerSlice.actions;
 
 export default FormReducerSlice.reducer;
