@@ -1,101 +1,108 @@
-// import { useState } from "react";
-// import { Flexbox } from "@/components/Flexbox/Flexbox";
-// import { useDispatch } from "@/store/hooks";
-// import { selectTypeOfTravel } from "@/store/FormReducer/FormReducer.slice";
+import { useState } from "react";
+import { Flexbox } from "@/components/Flexbox/Flexbox";
+import { useDispatch } from "@/store/hooks";
+import {
+    selectTypeOfTravel,
+    selectWishes,
+} from "@/store/FormReducer/FormReducer.slice";
+import { Select, Switch } from "@gravity-ui/uikit";
+import { Typography } from "@/components/Typography";
 
-// enum ETypeOfTravel {
-//     withChildren = "Семейное",
-//     romantic = "Романтическое",
-//     alone = "В одиночестве",
-// }
+enum ETypeOfTravel {
+    withChildren = "Семейное",
+    romantic = "Романтическое",
+    alone = "В одиночестве",
+}
+
+const Wishes = [
+    "Активный отдых",
+    "Экскурсии",
+    "Дегустации",
+    "Фототур",
+    "Шопинг",
+    "Релакс",
+    "Попробовать новое",
+];
 export const OtherInfo = () => {
-    // const dispatch = useDispatch();
-    // const { typeOfTravel } = useSelector(FormState);
-    // const [switcherChecked, toggleSwitcherChecked] = useState<boolean>(false);
-    // const [wishes, setWishes] = useState<string>("");
+    const dispatch = useDispatch();
+    const [switcherChecked, toggleSwitcherChecked] = useState<boolean>(false);
 
-    // const handlePreviewSelect = (ranges) => {
-    //     const result = {
-    //         start: ranges.start.toDate(getLocalTimeZone()),
-    //         end: ranges.end.toDate(getLocalTimeZone()),
-    //     };
+    const changeTravelWishesHandler = (wishes: any[]) => {
+        dispatch(selectWishes(wishes.join(", ")));
+    };
 
-    //     dispatch(selectDates(result));
-    // };
+    const toggleOtherDataHandler = () => {
+        toggleSwitcherChecked((prev) => !prev);
+        if (!switcherChecked) {
+            dispatch(selectTypeOfTravel(null));
+        }
+    };
 
-    // const toggleOtherDataHandler = () => {
-    //     toggleSwitcherChecked((prev) => !prev);
-    //     if (!switcherChecked) {
-    //         dispatch(selectTypeOfTravel(null));
-    //     }
-    // };
-
-    // const clickRadioHandler = (type: ETypeOfTravel) => {
-    //     dispatch(selectTypeOfTravel(type));
-    // };
+    const changeTravelTypeHandler = (type: string) => {
+        dispatch(selectTypeOfTravel(ETypeOfTravel[type]));
+    };
 
     return (
-        <> </>
-        // <Flexbox width="100%">
-        //     {/* <Cell
-        //         after={
-        //             <Switch
-        //                 checked={switcherChecked}
-        //                 onClick={toggleOtherDataHandler}
-        //             />
-        //         }
-        //         description={
-        //             switcherChecked && (
-        //                 <Flexbox direction="column">
-        //                     <Cell
-        //                         Component="label"
-        //                         before={
-        //                             <Radio
-        //                                 name="radio"
-        //                                 value="romantic"
-        //                                 // onClick={() =>
-        //                                 //     clickRadioHandler("romantic")
-        //                                 // }
-        //                             />
-        //                         }
-        //                     >
-        //                         {ETypeOfTravel.romantic}
-        //                     </Cell>
-        //                     <Cell
-        //                         Component="label"
-        //                         before={
-        //                             <Radio
-        //                                 name="radio"
-        //                                 value="withChildren"
-        //                                 // onClick={() =>
-        //                                 //     clickRadioHandler("withChildren")
-        //                                 // }
-        //                             />
-        //                         }
-        //                     >
-        //                         {ETypeOfTravel.withChildren}
-        //                     </Cell>
-        //                     <Cell
-        //                         Component="label"
-        //                         before={
-        //                             <Radio
-        //                                 name="radio"
-        //                                 value="alone"
-        //                                 // onClick={() =>
-        //                                 //     clickRadioHandler("alone")
-        //                                 // }
-        //                             />
-        //                         }
-        //                     >
-        //                         {ETypeOfTravel.alone}
-        //                     </Cell>
-        //                 </Flexbox>
-        //             )
-        //         }
-        //     >
-        //         Указать формат поездки
-        //     </Cell> */}
-        //     <></>
-        // </Flexbox>
+        <Flexbox width={"100%"}>
+            <Flexbox direction="row" justify="space-between">
+                <Typography kind="callout">Дополнительно</Typography>
+                <Switch
+                    checked={switcherChecked}
+                    onChange={toggleOtherDataHandler}
+                />
+            </Flexbox>
+            {switcherChecked && (
+                <Flexbox gap={16} verticalMargin={20}>
+                    <Flexbox
+                        direction="row"
+                        width={"100%"}
+                        justify="space-between"
+                        align="center"
+                    >
+                        <Typography kind="callout">Тип путешествия</Typography>
+                        <Select
+                            size="m"
+                            placeholder="Выбрать"
+                            width={150}
+                            onUpdate={([value]) =>
+                                changeTravelTypeHandler(value)
+                            }
+                        >
+                            {Object.keys(ETypeOfTravel).map((type, index) => (
+                                <Select.Option
+                                    value={type}
+                                    key={`${type}${index}`}
+                                >
+                                    {ETypeOfTravel[type]}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </Flexbox>
+                    <Flexbox
+                        direction="row"
+                        width={"100%"}
+                        justify="space-between"
+                    >
+                        <Typography kind="callout">Пожелания</Typography>
+                        <Select
+                            size="m"
+                            placeholder="Выбрать"
+                            width={150}
+                            onUpdate={changeTravelWishesHandler}
+                            multiple
+                        >
+                            {Wishes.map((wish, index) => (
+                                <Select.Option
+                                    value={wish}
+                                    key={`${wish}${index}`}
+                                >
+                                    {wish}
+                                </Select.Option>
+                            ))}
+                        </Select>
+                    </Flexbox>
+                </Flexbox>
+            )}
+        </Flexbox>
     );
 };

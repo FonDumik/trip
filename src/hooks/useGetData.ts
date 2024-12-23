@@ -10,6 +10,10 @@ export const useGetData = () => {
 
     const getTripInformation = async () => {
         setLoading(true);
+
+        setTimeout(() => {
+            setLoading(false);
+        }, 3000);
         // try {
 
         //     // const response = await fetch(

@@ -39,10 +39,13 @@ export const FormReducerSlice = createSlice({
         selectTypeOfTravel: (state, { payload }) => {
             state.typeOfTravel = payload;
         },
+        selectWishes: (state, { payload }) => {
+            state.wishes = payload;
+        },
     },
 });
 
-export const { selectRegion, selectDates, selectTypeOfTravel } =
+export const { selectRegion, selectDates, selectTypeOfTravel, selectWishes } =
     FormReducerSlice.actions;
 
 export default FormReducerSlice.reducer;

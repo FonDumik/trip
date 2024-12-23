@@ -41,13 +41,7 @@ export const Region = () => {
     };
 
     return (
-        <Flexbox
-            justify="center"
-            gap={16}
-            align="center"
-            wrap="wrap"
-            style={{ padding: "0 20px" }}
-        >
+        <Flexbox justify="center" gap={16} align="center" wrap="wrap">
             <Text variant="header-2">Куда вы планируете отправиться?</Text>
             <Text variant="body-1">Начните вводить название города</Text>
             <Select

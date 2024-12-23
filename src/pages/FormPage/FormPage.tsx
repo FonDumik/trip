@@ -1,43 +1,40 @@
 import { FC } from "react";
-// import styles from "./styles.module.scss";
 import { useSelector } from "@/store/hooks";
 import { Region } from "@/components/Form/Region/Region";
 import { FormState } from "@/store/selectors";
 import { DatesRange } from "@/components/Form/DatesRange/DatesRange";
 import { Layout } from "@/components/Layout/Layout";
-import { Loader, Overlay } from "@gravity-ui/uikit";
 import { BottomButton } from "@/components/BottomButton/BottomButton";
 import { useGetData } from "@/hooks/useGetData";
 import { Flexbox } from "@/components/Flexbox/Flexbox";
+import { OtherInfo } from "@/components/Form/OtherInfo/OtherInfo";
+import { useNavigate } from "react-router-dom";
 
 export const FormPage: FC = () => {
-    // const navigate = useNavigate();
-    // const navigateToResultPage = () => navigate("/result");
+    const navigate = useNavigate();
     const { region, startDate, endDate } = useSelector(FormState);
     const isPlanningButtonDisabled = !region.value || !startDate || !endDate;
-    const { getTripInformation, loading } = useGetData();
+    const { loading } = useGetData();
 
-    const planningButtonHandler = async () => {
-        await getTripInformation();
+    const planningButtonHandler = () => {
+        navigate("/trip/result");
     };
 
     return (
         <Layout>
-            <Flexbox gap={16} align="center">
+            <Flexbox gap={16} align="center" style={{ padding: "0 20px" }}>
                 <Region />
+                {region.value && <OtherInfo />}
                 {region.value && <DatesRange />}
-                <BottomButton
-                    onClick={planningButtonHandler}
-                    title="Расчитать"
-                    size="xl"
-                    disabled={isPlanningButtonDisabled}
-                    loading={loading}
-                />
             </Flexbox>
 
-            <Overlay visible={loading}>
-                <Loader />
-            </Overlay>
+            <BottomButton
+                onClick={planningButtonHandler}
+                title="Расчитать"
+                size="xl"
+                disabled={isPlanningButtonDisabled}
+                loading={loading}
+            />
         </Layout>
     );
 };
