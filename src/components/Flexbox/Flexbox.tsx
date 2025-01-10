@@ -8,6 +8,7 @@ interface IProps extends HTMLProps<HTMLDivElement> {
     align?: string;
     wrap?: string;
     justify?: string;
+    padding?: string;
     verticalMargin?: number;
     style?: any;
     className?: string;
@@ -24,6 +25,7 @@ export const Flexbox = ({
     width = "auto",
     wrap = "nowrap",
     verticalMargin = 0,
+    padding = "",
     style,
     className,
     onClick,
@@ -37,6 +39,7 @@ export const Flexbox = ({
         flexWrap: wrap,
         justifyContent: justify,
         margin: `${verticalMargin}px 0`,
+        padding: padding,
     };
 
     return (

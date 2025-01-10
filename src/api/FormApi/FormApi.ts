@@ -1,20 +1,25 @@
 import * as queryString from "query-string";
-import { IRegionResponse } from "@/domain/form/models";
+import { IEventsResponse, IRegionResponse } from "@/domain/form/models";
 import { API_URL } from "../apiUrl";
 
 const ENV = import.meta.env;
 
 const getDefaultOptions = (auth): RequestInit => {
-    return {
+    const result: any = {
         method: "GET",
         mode: "cors",
         headers: {
             "Content-Type": "application/json",
             Accept: "application/json",
             "Accept-Language": "ru",
-            Authorization: auth,
         },
     };
+
+    if (auth) {
+        result.Authorization = auth;
+    }
+
+    return result;
 };
 
 const getQuery = (queryParams: {
@@ -38,6 +43,32 @@ export const FormApi = {
             const options = getDefaultOptions(
                 `Bearer ${ENV.VITE_OXILOR_API_TOKEN}`
             );
+            const response = await fetch(path, {
+                ...options,
+            });
+            return response.json();
+        } catch (error) {
+            throw new Error("Error");
+        }
+    },
+
+    getEventsAsync: async (
+        location: string,
+        actual_since: number,
+        actual_until: number
+    ): Promise<IEventsResponse> => {
+        try {
+            const url = API_URL.Events;
+            const query = getQuery({
+                location,
+                actual_since,
+                actual_until,
+                fields: "id,title,slug,description,images,site_url",
+                categories:
+                    "entertainment,festival,theater,tour,yarmarki-razvlecheniya-yarmarki,party,other,holiday",
+            });
+            const path = query ? `${url}?` + query : url;
+            const options = getDefaultOptions("");
             const response = await fetch(path, {
                 ...options,
             });

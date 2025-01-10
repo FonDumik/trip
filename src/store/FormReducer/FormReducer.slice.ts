@@ -13,6 +13,23 @@ interface IFormState {
     // other
     typeOfTravel: "withChildren" | "romantic" | "alone" | null;
     wishes: string;
+
+    // result
+    result: {
+        events: {
+            id: number;
+            title: string;
+            slug: string;
+            description: string; //html
+            images: {
+                image: string;
+            }[];
+            site_url: string;
+        }[];
+        tickets: any[];
+        weather: any[];
+        overview: string;
+    };
 }
 
 const initialState: IFormState = {
@@ -23,6 +40,12 @@ const initialState: IFormState = {
     endDate: null,
     typeOfTravel: null,
     wishes: "",
+    result: {
+        events: [],
+        tickets: [],
+        weather: [],
+        overview: "",
+    },
 };
 
 export const FormReducerSlice = createSlice({
@@ -42,10 +65,19 @@ export const FormReducerSlice = createSlice({
         selectWishes: (state, { payload }) => {
             state.wishes = payload;
         },
+
+        updateResult: (state, { payload }) => {
+            state.result[payload.field] = payload.data;
+        },
     },
 });
 
-export const { selectRegion, selectDates, selectTypeOfTravel, selectWishes } =
-    FormReducerSlice.actions;
+export const {
+    selectRegion,
+    selectDates,
+    selectTypeOfTravel,
+    selectWishes,
+    updateResult,
+} = FormReducerSlice.actions;
 
 export default FormReducerSlice.reducer;

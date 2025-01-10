@@ -10,3 +10,17 @@ export interface IRegionResponse {
     };
     country_name: "Россия";
 }
+
+export interface IEvent {
+    id: number;
+    title: string;
+    slug: string;
+    description: string; //html
+    images: {
+        image: string;
+    }[];
+    site_url: string;
+}
+export interface IEventsResponse {
+    results: IEvent[];
+}

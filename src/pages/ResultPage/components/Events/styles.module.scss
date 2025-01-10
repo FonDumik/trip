@@ -1,0 +1,24 @@
+.carousel {
+    overflow-y: scroll; // Позволяем прокрутку по оси X
+    scrollbar-width: thin; // Для Firefox (настройка ширины полосы прокрутки)
+    &::-webkit-scrollbar {
+        height: 8px; // Высота полосы прокрутки
+    }
+
+    &::-webkit-scrollbar-thumb {
+        background-color: #888; // Цвет ползунка полосы прокрутки
+        border-radius: 4px;
+    }
+
+    &::-webkit-scrollbar-track {
+        background: #f1f1f1; // Цвет фона полосы прокрутки
+    }
+
+    a {
+        text-decoration: none;
+    }
+}
+
+.itemDescription {
+    display: block;
+}
