@@ -22,7 +22,7 @@ export const Events = ({ data }: { data: IEvent[] }) => {
     };
 
     return (
-        <Flexbox gap={8} padding="0 16px">
+        <Flexbox gap={16} padding="0 16px">
             {data.map((event: IEvent) => (
                 <Card
                     key={event.slug}
