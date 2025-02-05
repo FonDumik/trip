@@ -9,7 +9,6 @@ import { FormState } from "../../store/selectors";
 import { Events } from "./components/Events/Events";
 import { ResultContainer } from "./ResultContainer/ResultContainer";
 import {
-    Box,
     Button,
     Card,
     CardContent,
