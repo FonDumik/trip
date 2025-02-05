@@ -3,7 +3,7 @@
     "private": true,
     "version": "5.0.0",
     "type": "module",
-    "homepage": "https://fondumik.github.io/trip",
+    "homepage": "https://trip-ivory.vercel.app/",
     "scripts": {
         "dev": "vite",
         "build": "tsc && vite build",

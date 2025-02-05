@@ -9,10 +9,10 @@ export const IndexPage: FC = () => {
             <Flexbox justify="center" align="center">
                 <Flexbox gap={16} width={"80%"}>
                     <Typography variant="h3" align="center">
-                        Приветствую, Олег!
+                        Меня зовут Триппи!
                     </Typography>
                     <Typography variant="body1" align="center">
-                        Давайте начнем планировать путешествие вашей мечты!
+                        Я помогу вам не заскучать в вашем путешествии!
                     </Typography>
                 </Flexbox>
 
@@ -24,13 +24,8 @@ export const IndexPage: FC = () => {
                 />
             </Flexbox>
 
-            <Button
-                size="large"
-                variant="contained"
-                fullWidth
-                href="/trip/form"
-            >
-                Начать
+            <Button size="large" variant="contained" fullWidth href="/form">
+                🚀 Вперёд!
             </Button>
         </Flexbox>
     );

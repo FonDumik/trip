@@ -28,8 +28,8 @@ export const DatesRange = () => {
             wrap="wrap"
             style={{ padding: "20px 0" }}
         >
-            <Text variant="header-2">Даты поездки</Text>
-            <Text variant="body-1">Выберите даты</Text>
+            <Text variant="header-2">А когда?</Text>
+            <Text variant="body-1">Выберите даты "туда/обратно"</Text>
 
             <RangeCalendar
                 minValue={dateTimeParse(new Date().toUTCString())}

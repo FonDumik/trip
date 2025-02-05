@@ -45,8 +45,8 @@ export const Region = () => {
 
     return (
         <Flexbox justify="center" gap={16} align="center" wrap="wrap">
-            <Text variant="header-2">Куда вы планируете отправиться?</Text>
-            <Text variant="body-1">Начните вводить название города</Text>
+            <Text variant="header-2">Заполним краткую информацию</Text>
+            <Text variant="body-1">Куда вы планируете отправиться?</Text>
             <Autocomplete
                 className={styles.autocomplete}
                 options={regions || []} // Список доступных регионов

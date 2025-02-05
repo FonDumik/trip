@@ -9,6 +9,7 @@ import { FormState } from "../../store/selectors";
 import { Events } from "./components/Events/Events";
 import { ResultContainer } from "./ResultContainer/ResultContainer";
 import {
+    Box,
     Button,
     Card,
     CardContent,
@@ -50,7 +51,7 @@ export const ResultPage: FC = () => {
             gap={16}
             verticalMargin={32}
         >
-            <Typography variant="h3">Результат</Typography>
+            <Typography variant="h4">Результат</Typography>
 
             <Flexbox
                 direction="row"
@@ -103,9 +104,20 @@ export const ResultPage: FC = () => {
                                 </ul>
                             </Flexbox>
                         ))}
-                    {tab === 1 && result?.events?.length && (
-                        <Events data={result.events as any} />
-                    )}
+                    {tab === 1 &&
+                        (result?.events?.length ? (
+                            <Events data={result.events as any} />
+                        ) : (
+                            <Flexbox
+                                justify="center"
+                                align="center"
+                                verticalMargin={16}
+                            >
+                                <Typography variant="body1">
+                                    В этом городе совсем скучно
+                                </Typography>
+                            </Flexbox>
+                        ))}
                     {tab === 2 && (
                         <Flexbox gap={8} padding="0 16px">
                             {popularPlaces.map((place) => (

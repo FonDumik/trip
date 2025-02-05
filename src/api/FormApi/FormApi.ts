@@ -79,24 +79,24 @@ export const FormApi = {
         }
     },
 
-    getWeatherAsync: async (): Promise<IRegionResponse[]> => {
-        try {
-            const url = API_URL.Weather;
-            const query = getQuery({
-                lat: 33.44,
-                lon: -94.04,
-                appid: ENV.VITE_OPEN_WEATHER_API_TOKEN,
-            });
-            const path = query ? `${url}?` + query : url;
-            const options = getDefaultOptions(
-                `Bearer ${ENV.VITE_OXILOR_API_TOKEN}`
-            );
-            const response = await fetch(path, {
-                ...options,
-            });
-            return response.json();
-        } catch (error) {
-            throw new Error("Error");
-        }
-    },
+    // getWeatherAsync: async (): Promise<IRegionResponse[]> => {
+    //     try {
+    //         const url = API_URL.Weather;
+    //         const query = getQuery({
+    //             lat: 33.44,
+    //             lon: -94.04,
+    //             appid: ENV.VITE_OPEN_WEATHER_API_TOKEN,
+    //         });
+    //         const path = query ? `${url}?` + query : url;
+    //         const options = getDefaultOptions(
+    //             `Bearer ${ENV.VITE_OXILOR_API_TOKEN}`
+    //         );
+    //         const response = await fetch(path, {
+    //             ...options,
+    //         });
+    //         return response.json();
+    //     } catch (error) {
+    //         throw new Error("Error");
+    //     }
+    // },
 };

@@ -11,7 +11,7 @@ interface Route {
 }
 
 export const routes: Route[] = [
-    { path: "/trip/", Component: IndexPage },
-    { path: "/trip/form", Component: FormPage },
-    { path: "/trip/result", Component: ResultPage },
+    { path: "/", Component: IndexPage },
+    { path: "/form", Component: FormPage },
+    { path: "/result", Component: ResultPage },
 ];

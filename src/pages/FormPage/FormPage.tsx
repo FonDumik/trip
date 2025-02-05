@@ -17,27 +17,29 @@ export const FormPage: FC = () => {
     const { loading } = useGetData();
 
     const planningButtonHandler = () => {
-        navigate("/trip/result");
+        navigate("/result");
     };
 
     return (
         <Layout>
             <Flexbox gap={16} align="center" style={{ padding: "0 20px" }}>
                 <Region />
-                {region.value && <OtherInfo />}
                 {region.value && <DatesRange />}
+                {region.value && <OtherInfo />}
             </Flexbox>
 
-            <Button
-                onClick={planningButtonHandler}
-                size="large"
-                disabled={isPlanningButtonDisabled}
-                loading={loading}
-                variant="outlined"
-                fullWidth
-            >
-                Расчитать
-            </Button>
+            {region.value && (
+                <Button
+                    onClick={planningButtonHandler}
+                    size="large"
+                    disabled={isPlanningButtonDisabled}
+                    loading={loading}
+                    variant="outlined"
+                    fullWidth
+                >
+                    Готово
+                </Button>
+            )}
         </Layout>
     );
 };
