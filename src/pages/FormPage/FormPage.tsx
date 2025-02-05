@@ -1,14 +1,14 @@
 import { FC } from "react";
-import { useSelector } from "@/store/hooks";
-import { Region } from "@/components/Form/Region/Region";
-import { FormState } from "@/store/selectors";
-import { DatesRange } from "@/components/Form/DatesRange/DatesRange";
-import { Layout } from "@/components/Layout/Layout";
-import { BottomButton } from "@/components/BottomButton/BottomButton";
-import { useGetData } from "@/hooks/useGetData";
-import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { OtherInfo } from "@/components/Form/OtherInfo/OtherInfo";
+import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { Flexbox } from "../../components/Flexbox/Flexbox";
+import { DatesRange } from "../../components/Form/DatesRange/DatesRange";
+import { OtherInfo } from "../../components/Form/OtherInfo/OtherInfo";
+import { Region } from "../../components/Form/Region/Region";
+import { Layout } from "../../components/Layout/Layout";
+import { useGetData } from "../../hooks/useGetData";
+import { FormState } from "../../store/selectors";
+import { Button } from "@mui/material";
 
 export const FormPage: FC = () => {
     const navigate = useNavigate();
@@ -28,13 +28,16 @@ export const FormPage: FC = () => {
                 {region.value && <DatesRange />}
             </Flexbox>
 
-            <BottomButton
+            <Button
                 onClick={planningButtonHandler}
-                title="Расчитать"
-                size="xl"
+                size="large"
                 disabled={isPlanningButtonDisabled}
                 loading={loading}
-            />
+                variant="outlined"
+                fullWidth
+            >
+                Расчитать
+            </Button>
         </Layout>
     );
 };

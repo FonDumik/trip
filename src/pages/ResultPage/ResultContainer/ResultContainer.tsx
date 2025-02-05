@@ -1,6 +1,6 @@
-import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { Typography } from "@mui/joy";
 import { ReactNode } from "react";
+import { Flexbox } from "../../../components/Flexbox/Flexbox";
+import { Typography } from "@mui/material";
 
 export const ResultContainer = ({
     title,
@@ -10,10 +10,8 @@ export const ResultContainer = ({
     children: ReactNode;
 }) => {
     return (
-        <Flexbox gap={16} width={"100%"} padding="0 0 0 20px">
-            <Typography level="title-lg" textColor="common.white">
-                {title}
-            </Typography>
+        <Flexbox gap={16} width={"100%"}>
+            <Typography variant="h5">{title}</Typography>
 
             {children}
         </Flexbox>

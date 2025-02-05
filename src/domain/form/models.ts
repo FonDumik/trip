@@ -20,6 +20,8 @@ export interface IEvent {
         image: string;
     }[];
     site_url: string;
+    dates: any;
+    short_title: string;
 }
 export interface IEventsResponse {
     results: IEvent[];

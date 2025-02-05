@@ -1,11 +1,11 @@
-import { useDispatch, useSelector } from "@/store/hooks";
 import { RangeCalendar, RangeValue } from "@gravity-ui/date-components";
 import { dateTimeParse } from "@gravity-ui/date-utils";
 import { Text } from "@gravity-ui/uikit";
-import { selectDates } from "@/store/FormReducer/FormReducer.slice";
-import { Flexbox } from "@/components/Flexbox/Flexbox";
 import dayjs from "dayjs";
-import { FormState } from "@/store/selectors";
+import { useDispatch, useSelector } from "react-redux";
+import { selectDates } from "../../../store/FormReducer/FormReducer.slice";
+import { FormState } from "../../../store/selectors";
+import { Flexbox } from "../../Flexbox/Flexbox";
 
 export const DatesRange = () => {
     const dispatch = useDispatch();

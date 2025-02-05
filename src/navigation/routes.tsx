@@ -1,8 +1,7 @@
 import type { ComponentType, JSX } from "react";
-
-import { IndexPage } from "@/pages/IndexPage/IndexPage";
-import { FormPage } from "@/pages/FormPage/FormPage";
-import { ResultPage } from "@/pages/ResultPage/ResultPage";
+import { IndexPage } from "../pages/IndexPage/IndexPage";
+import { FormPage } from "../pages/FormPage/FormPage";
+import { ResultPage } from "../pages/ResultPage/ResultPage";
 
 interface Route {
     path: string;

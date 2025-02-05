@@ -1,6 +1,7 @@
 .carousel {
     overflow-y: scroll; // Позволяем прокрутку по оси X
     scrollbar-width: thin; // Для Firefox (настройка ширины полосы прокрутки)
+
     &::-webkit-scrollbar {
         height: 8px; // Высота полосы прокрутки
     }

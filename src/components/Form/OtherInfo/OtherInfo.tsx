@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { useDispatch } from "@/store/hooks";
-import {
-    selectTypeOfTravel,
-    selectWishes,
-} from "@/store/FormReducer/FormReducer.slice";
 import { Select, Switch } from "@gravity-ui/uikit";
-import { Typography } from "@/components/Typography";
+import { useDispatch } from "react-redux";
+import {
+    selectWishes,
+    selectTypeOfTravel,
+} from "../../../store/FormReducer/FormReducer.slice";
+import { Flexbox } from "../../Flexbox/Flexbox";
+import { Typography } from "../../Typography";
 
 enum ETypeOfTravel {
     withChildren = "Семейное",

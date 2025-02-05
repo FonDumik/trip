@@ -4,7 +4,7 @@ import { API_URL } from "../apiUrl";
 
 const ENV = import.meta.env;
 
-const getDefaultOptions = (auth): RequestInit => {
+const getDefaultOptions = (auth: string): RequestInit => {
     const result: any = {
         method: "GET",
         mode: "cors",
@@ -63,6 +63,7 @@ export const FormApi = {
                 location,
                 actual_since,
                 actual_until,
+                text_format: "text",
                 fields: "id,title,slug,description,images,site_url",
                 categories:
                     "entertainment,festival,theater,tour,yarmarki-razvlecheniya-yarmarki,party,other,holiday",

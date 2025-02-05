@@ -1,10 +1,10 @@
-import { FormApi } from "@/api/FormApi/FormApi";
-import { CitiesWithEvents } from "@/constants/cities";
-import { updateResult } from "@/store/FormReducer/FormReducer.slice";
-import { useDispatch, useSelector } from "@/store/hooks";
-import { FormState } from "@/store/selectors";
 import dayjs from "dayjs";
 import { useMemo } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { FormApi } from "../api/FormApi/FormApi";
+import { CitiesWithEvents } from "../constants/cities";
+import { updateResult } from "../store/FormReducer/FormReducer.slice";
+import { FormState } from "../store/selectors";
 
 export const useGetEvents = () => {
     const dispatch = useDispatch();

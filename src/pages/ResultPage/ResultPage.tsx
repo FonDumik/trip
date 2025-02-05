@@ -1,18 +1,49 @@
-import { FC, useEffect } from "react";
+import { FC, useEffect, useState } from "react";
 import { Loader, Overlay } from "@gravity-ui/uikit";
-import { useGetData } from "@/hooks/useGetData";
-import { Flexbox } from "@/components/Flexbox/Flexbox";
-import { BottomButton } from "@/components/BottomButton/BottomButton";
-import { useSelector } from "@/store/hooks";
-import { FormState } from "@/store/selectors";
-import { Events } from "@/pages/ResultPage/components/Events/Events";
-import { Typography } from "@mui/joy";
+import { useSelector } from "react-redux";
+import { Flexbox } from "../../components/Flexbox/Flexbox";
+import { AIPlan } from "../../constants/aiplan";
+import { popularPlaces } from "../../constants/popularPlaces";
+import { useGetData } from "../../hooks/useGetData";
+import { FormState } from "../../store/selectors";
+import { Events } from "./components/Events/Events";
 import { ResultContainer } from "./ResultContainer/ResultContainer";
-import { AIPlan } from "@/constants/aiplan";
+import {
+    Button,
+    Card,
+    CardActionArea,
+    CardContent,
+    CardHeader,
+    CardMedia,
+    IconButton,
+    Link,
+    List,
+    ListItem,
+    ListItemButton,
+    ListItemIcon,
+    ListItemText,
+    Tab,
+    Tabs,
+    Typography,
+} from "@mui/material";
+import {
+    Hotel,
+    LocationOn,
+    RestaurantMenu,
+    Today,
+    TheaterComedy,
+} from "@mui/icons-material";
+import { green, grey } from "@mui/material/colors";
 
 export const ResultPage: FC = () => {
     const { result } = useSelector(FormState);
     const { getTripInformation, loading } = useGetData();
+
+    const [tab, setTab] = useState(0);
+
+    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+        setTab(newValue);
+    };
 
     const loadResults = async () => {
         await getTripInformation();
@@ -30,71 +61,104 @@ export const ResultPage: FC = () => {
             justify="space-between"
             align="center"
             gap={16}
+            verticalMargin={32}
         >
-            <Typography level="h1" textColor="common.white" textAlign={"left"}>
-                Результат
-            </Typography>
+            <Typography variant="h3">Результат</Typography>
 
-            <Flexbox gap={16} align="center" width={"100%"}>
-                {result.events.length && (
-                    <ResultContainer title="События">
-                        <Events data={result.events} />
-                    </ResultContainer>
-                )}
-
-                {/* <ResultContainer title="Экскурсии">
-                    <Typography
-                        level="body-md"
-                        textColor="common.white"
-                        textAlign={"left"}
-                    >
-                        Пример данных
-                    </Typography>
-                </ResultContainer>
-
-                <ResultContainer title="Достопримечательности">
-                    <Typography
-                        level="body-md"
-                        textColor="common.white"
-                        textAlign={"left"}
-                    >
-                        Список популярных мест
-                    </Typography>
-                </ResultContainer> */}
-
-                <ResultContainer title="План поездки">
-                    {AIPlan.Msk.map((day) => (
-                        <Flexbox key={day.day}>
-                            <Typography
-                                level="h3"
-                                textColor="common.white"
-                                textAlign={"left"}
-                            >
-                                День: {day.day}
-                            </Typography>
-
-                            <ul>
-                                {day.plan.map((plan) => (
-                                    <Typography
-                                        level="body-md"
-                                        textColor="common.white"
-                                        textAlign={"left"}
-                                        component="li"
-                                        key={plan}
-                                    >
-                                        {plan}
-                                    </Typography>
-                                ))}
-                            </ul>
-                        </Flexbox>
-                    ))}
-                </ResultContainer>
-
-                <BottomButton
+            <Flexbox
+                direction="row"
+                justify="space-between"
+                align="center"
+                gap={16}
+            >
+                <Button
                     onClick={makePdfHandler}
-                    title="Сохранить в PDF"
-                    size="xl"
-                />
+                    variant="contained"
+                    size="large"
+                >
+                    Сохранить в PDF
+                </Button>
+                <Button
+                    onClick={makePdfHandler}
+                    variant="outlined"
+                    size="large"
+                >
+                    Поделиться
+                </Button>
+            </Flexbox>
+            <Flexbox gap={16} align="center" width={"100%"}>
+                <Tabs
+                    value={tab}
+                    onChange={handleChange}
+                    aria-label="basic tabs example"
+                >
+                    <Tab icon={<Today />} label="План поездки" />
+                    <Tab icon={<TheaterComedy />} label="События" />
+                    <Tab icon={<LocationOn />} label="Интересные места" />
+                </Tabs>
+
+                <ResultContainer title="">
+                    {tab === 0 &&
+                        AIPlan.Msk.map((day) => (
+                            <Flexbox
+                                key={day.day}
+                                padding="0 0 0 20px"
+                                width={"90%"}
+                            >
+                                <Typography>День {day.day}</Typography>
+
+                                <ul>
+                                    {day.plan.map((plan) => (
+                                        <Typography component="li" key={plan}>
+                                            {plan}
+                                        </Typography>
+                                    ))}
+                                </ul>
+                            </Flexbox>
+                        ))}
+                    {tab === 1 && result?.events?.length && (
+                        <Events data={result.events} />
+                    )}
+                    {tab === 2 && (
+                        <Flexbox gap={8} padding="0 16px">
+                            {popularPlaces.map((place) => (
+                                <Card
+                                    key={place.link}
+                                    style={{
+                                        background: grey[800],
+                                    }}
+                                >
+                                    <Flexbox>
+                                        <CardHeader
+                                            action={
+                                                <IconButton
+                                                    aria-label="settings"
+                                                    href={place.link}
+                                                    target="_blank"
+                                                >
+                                                    <LocationOn color="success" />
+                                                </IconButton>
+                                            }
+                                            title={place.title}
+                                        />
+                                        <CardMedia
+                                            component="img"
+                                            height="194"
+                                            image={place.img}
+                                            title={place.title}
+                                            alt={place.title}
+                                        />
+                                        <CardContent>
+                                            <Typography>
+                                                {place.description}
+                                            </Typography>
+                                        </CardContent>
+                                    </Flexbox>
+                                </Card>
+                            ))}
+                        </Flexbox>
+                    )}
+                </ResultContainer>
             </Flexbox>
 
             <Overlay visible={loading}>

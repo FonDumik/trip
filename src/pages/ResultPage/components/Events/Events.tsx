@@ -1,57 +1,54 @@
-import { IEvent } from "@/domain/form/models";
-import { Flexbox } from "../../../../components/Flexbox/Flexbox";
-import styles from "./styles.module.scss";
 import {
-    AspectRatio,
-    Button,
+    CardActionArea,
+    CardMedia,
     Card,
-    CardContent,
-    CardOverflow,
-    Typography,
-} from "@mui/joy";
+    CardHeader,
+    IconButton,
+} from "@mui/material";
+import { Flexbox } from "@/components/Flexbox/Flexbox";
+import { IEvent } from "@/domain/form/models";
+import { ArrowForward } from "@mui/icons-material";
+import { grey } from "@mui/material/colors";
 
 export const Events = ({ data }: { data: IEvent[] }) => {
-    return (
-        <Flexbox className={styles.carousel} direction="row" gap={8}>
-            {data.map((event) => (
-                <Card variant="plain" sx={{ width: 320 }} key={event.slug}>
-                    <CardOverflow>
-                        <AspectRatio ratio={2}>
-                            <img
-                                src={event.images[0].image}
-                                srcSet={event.images[0].image}
-                                loading="lazy"
-                                alt={event.slug}
-                            />
-                        </AspectRatio>
-                    </CardOverflow>
-                    <CardContent>
-                        <Typography level="title-lg" width={300}>
-                            {event.title.toUpperCase()}
-                        </Typography>
-                        {/* <Typography
-                            level="body-xs"
-                            color="neutral"
-                            width={300}
-                            maxHeight={50}
-                            overflow="scroll"
-                        >
-                            <span
-                                dangerouslySetInnerHTML={{
-                                    __html: event.description,
-                                }}
-                                // className={styles.itemDescription}
-                            />
-                        </Typography> */}
-                    </CardContent>
+    const formatSentences = (input: string) => {
+        return input
+            .split(/(?<=[.!?])\s+/) // Разделяем по знакам препинания и пробелам
+            .map(
+                (sentence) =>
+                    sentence.charAt(0).toUpperCase() + sentence.slice(1)
+            )
+            .join(" ");
+    };
 
-                    <Button
-                        component={"a"}
-                        href={event.site_url}
-                        target="_blank"
-                    >
-                        Подробности
-                    </Button>
+    return (
+        <Flexbox gap={8} padding="0 16px">
+            {data.map((event: IEvent) => (
+                <Card
+                    key={event.slug}
+                    style={{
+                        background: grey[800],
+                    }}
+                >
+                    <CardActionArea href={event.site_url} target="_blank">
+                        <Flexbox>
+                            <CardHeader
+                                action={
+                                    <IconButton aria-label="settings">
+                                        <ArrowForward color="success" />
+                                    </IconButton>
+                                }
+                                title={formatSentences(event.title)}
+                            />
+                            <CardMedia
+                                component="img"
+                                height="194"
+                                image={event.images[0].image}
+                                title={event.title}
+                                alt={event.title}
+                            />
+                        </Flexbox>
+                    </CardActionArea>
                 </Card>
             ))}
         </Flexbox>
