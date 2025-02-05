@@ -79,9 +79,13 @@ export const ResultPage: FC = () => {
                     onChange={handleChange}
                     aria-label="basic tabs example"
                 >
-                    <Tab icon={<Today />} label="План поездки" />
-                    <Tab icon={<TheaterComedy />} label="События" />
-                    <Tab icon={<LocationOn />} label="Интересные места" />
+                    <Tab icon={<Today />} label="План поездки" wrapped />
+                    <Tab icon={<TheaterComedy />} label="События" wrapped />
+                    <Tab
+                        icon={<LocationOn />}
+                        label="Интересные места"
+                        wrapped
+                    />
                 </Tabs>
 
                 <ResultContainer title="">
@@ -113,12 +117,12 @@ export const ResultPage: FC = () => {
                                 verticalMargin={16}
                             >
                                 <Typography variant="body1">
-                                    В этом городе совсем скучно
+                                    Нет интересных событий
                                 </Typography>
                             </Flexbox>
                         ))}
                     {tab === 2 && (
-                        <Flexbox gap={8} padding="0 16px">
+                        <Flexbox gap={16} padding="0 16px">
                             {popularPlaces.map((place) => (
                                 <Card
                                     key={place.link}
