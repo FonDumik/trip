@@ -11,29 +11,16 @@ import { ResultContainer } from "./ResultContainer/ResultContainer";
 import {
     Button,
     Card,
-    CardActionArea,
     CardContent,
     CardHeader,
     CardMedia,
     IconButton,
-    Link,
-    List,
-    ListItem,
-    ListItemButton,
-    ListItemIcon,
-    ListItemText,
     Tab,
     Tabs,
     Typography,
 } from "@mui/material";
-import {
-    Hotel,
-    LocationOn,
-    RestaurantMenu,
-    Today,
-    TheaterComedy,
-} from "@mui/icons-material";
-import { green, grey } from "@mui/material/colors";
+import { LocationOn, Today, TheaterComedy } from "@mui/icons-material";
+import { grey } from "@mui/material/colors";
 
 export const ResultPage: FC = () => {
     const { result } = useSelector(FormState);
@@ -41,7 +28,7 @@ export const ResultPage: FC = () => {
 
     const [tab, setTab] = useState(0);
 
-    const handleChange = (event: React.SyntheticEvent, newValue: number) => {
+    const handleChange = (_: React.SyntheticEvent, newValue: number) => {
         setTab(newValue);
     };
 
@@ -117,7 +104,7 @@ export const ResultPage: FC = () => {
                             </Flexbox>
                         ))}
                     {tab === 1 && result?.events?.length && (
-                        <Events data={result.events} />
+                        <Events data={result.events as any} />
                     )}
                     {tab === 2 && (
                         <Flexbox gap={8} padding="0 16px">

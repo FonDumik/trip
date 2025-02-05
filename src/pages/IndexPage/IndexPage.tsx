@@ -1,8 +1,7 @@
 import type { FC } from "react";
-import { useNavigate } from "react-router-dom";
 import styles from "./styles.module.scss";
 import { Flexbox } from "../../components/Flexbox/Flexbox";
-import { Button, Container, Typography } from "@mui/material";
+import { Button, Typography } from "@mui/material";
 
 export const IndexPage: FC = () => {
     return (

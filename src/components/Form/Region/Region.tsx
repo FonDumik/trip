@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDebouncedCallback } from "use-debounce";
 import { prepareForSelect } from "./helper";
 import styles from "./styles.module.scss";
-import { Select, Text, TextInput } from "@gravity-ui/uikit";
+import { Text } from "@gravity-ui/uikit";
 import { useDispatch } from "react-redux";
 import { apiInstance } from "../../../api/apiInstance";
 import { selectRegion } from "../../../store/FormReducer/FormReducer.slice";
