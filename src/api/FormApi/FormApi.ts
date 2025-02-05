@@ -59,7 +59,7 @@ export const FormApi = {
     ): Promise<IEventsResponse> => {
         try {
             // const url = API_URL.Events;
-            const url = "/v1/";
+            const url = "https://kudago.com/public-api/v1.4/events/";
             const query = getQuery({
                 location,
                 actual_since,
