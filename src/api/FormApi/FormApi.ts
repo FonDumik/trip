@@ -72,6 +72,7 @@ export const FormApi = {
             const options = getDefaultOptions("");
             const response = await fetch(path, {
                 ...options,
+                ...{ Origin: "https://trip-ivory.vercel.app/" },
             });
             return response.json();
         } catch (error) {
