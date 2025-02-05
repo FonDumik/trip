@@ -20,7 +20,15 @@ export default defineConfig({
     publicDir: "./public",
     server: {
         // Exposes your dev server and makes it accessible for the devices in the same network.
-        host: true,
+        proxy: {
+            "/v1/": {
+                // target: "http://localhost:5371/mirror",
+                target: "https://kudago.com/public-api/v1.4/events/",
+                changeOrigin: true,
+                rewrite: (path) => path.replace(/^\/v1/, ""),
+            },
+        },
+        open: true,
         port: 3000,
     },
 });

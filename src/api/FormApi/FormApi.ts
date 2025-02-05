@@ -58,7 +58,8 @@ export const FormApi = {
         actual_until: number
     ): Promise<IEventsResponse> => {
         try {
-            const url = API_URL.Events;
+            // const url = API_URL.Events;
+            const url = "/v1/";
             const query = getQuery({
                 location,
                 actual_since,
@@ -72,7 +73,6 @@ export const FormApi = {
             const options = getDefaultOptions("");
             const response = await fetch(path, {
                 ...options,
-                ...{ Origin: "https://trip-ivory.vercel.app/" },
             });
             return response.json();
         } catch (error) {
