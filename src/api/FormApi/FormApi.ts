@@ -59,8 +59,7 @@ export const FormApi = {
     ): Promise<IEventsResponse> => {
         try {
             // const url = API_URL.Events;
-            const url =
-                "https://cors-proxy﮳tk/?url=https://kudago.com/public-api/v1.4/events/";
+            const url = "https://node-tau-three.vercel.app/api";
             const query = getQuery({
                 location,
                 actual_since,
